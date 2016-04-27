@@ -1,12 +1,17 @@
 const fs = require('fs');
 var num;
-var accepted_codpoints = [5,97,66,98,67,99,68,100,69,101,70,102,71,103,72,104,73,105,74,106,75,107,76,108,77,109,78,110,79,111,80,112,81,113,82,114,83,115,84,116,85,117,86,118,87,119,88,120,89,121,90,122,126,96,33,64,35,36,37,94,38,42,40,41,95,45,43,61,123,91,125,93,124,58,59,39,60,44,62,46,63,47,32,34];
+var accepted_codpoints = [48,49,50,51,52,53,54,55,56,57,65,97,66,98,67,99,68,100,69,101,70,102,71,103,72,104,73,105,74,106,75,107,76,108,77,109,78,110,79,111,80,112,81,113,82,114,83,115,84,116,85,117,86,118,87,119,88,120,89,121,90,122,126,96,33,64,35,36,37,94,38,42,40,41,95,45,43,61,123,91,125,93,124,58,59,39,60,44,62,46,63,47,34,32];
+
+if(process.platform === "win32"){
+	console.error("This node module does not work on Windows");
+	process.exit(0);
+};
 
 if(process.argv[2] && isNaN(process.argv[2]) !== true){
 	var chunk = parseInt(process.argv[2]);
 }else{
 	console.error("Specify a number for the length of your password");
-}
+};
 
 if(chunk && typeof chunk == "number"){
 	var random = fs.createReadStream('/dev/urandom', {"start": 0, "end": parseInt(chunk * 3)});
@@ -33,4 +38,4 @@ if(chunk && typeof chunk == "number"){
 }
 
 //Generates accepted_codepoints
-//for(i=0;i<84;i++){codepoints.push("AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz~`!@#$%^&*()_-+={[}]\|:;'<,>.?/\" ".charCodeAt(i));}
+//for(i=0;i<84;i++){codepoints.push("0123456789AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz~`!@#$%^&*()_-+={[}]\|:;'<,>.?/\" ".charCodeAt(i));}
